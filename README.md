@@ -1,7 +1,7 @@
 # Evoltsoft Assignment
 
 ## 📹 Demo Video
-[Click here to watch the demo](https://github.com/user-attachments/assets/1920aba1-2eb2-4064-86e5-68a0fdd5b918)
+https://github.com/user-attachments/assets/1920aba1-2eb2-4064-86e5-68a0fdd5b918
 
 ## 🚀 Getting Started
 
