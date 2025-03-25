@@ -11,7 +11,7 @@ class ConnectorModel extends ConnectorEntity {
   factory ConnectorModel.fromJson(Map<String, dynamic> json) {
     return ConnectorModel(
       type: json['type'],
-      powerCapacity: (json['powerCapacity']).toDouble(),
+      powerCapacity: (json['powerCapacity']),
       totalPlugs: json['totalPlugs'],
       availablePlugs: json['availablePlugs'],
     );

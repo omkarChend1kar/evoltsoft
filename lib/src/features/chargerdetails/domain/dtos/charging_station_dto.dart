@@ -2,14 +2,14 @@ import 'package:evoltsoft/src/features/chargerdetails/domain/entities/charging_s
 import 'package:evoltsoft/src/features/chargerdetails/domain/entities/connector_entity.dart';
 
 class ChargingStationDTO {
-  final String id;
+  final int id;
   final String name;
   final String address;
   final double latitude;
   final double longitude;
   final List<ConnectorEntity> connectors;
   final String openHours;
-  final String imageUrl;
+  final String? imageUrl;
   final double totalPowerCapacity;
   final double availablePowerCapacity;
   final bool isAvailable;

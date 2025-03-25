@@ -17,6 +17,8 @@ import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../../features/chargerdetails/presentation/cubit/chargerdetails_cubit.dart'
     as _i1064;
+import '../../../features/chargerdiscovery/data/datasources/remote/charger_discovery_remotedatasource.dart'
+    as _i323;
 import '../../../features/chargerdiscovery/data/repositories/charger_discovery_repository_impl.dart'
     as _i412;
 import '../../../features/chargerdiscovery/domain/repositories/charger_discovery_repository.dart'
@@ -65,6 +67,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1064.ChargerDetailsCubit>(() => _i1064.ChargerDetailsCubit());
     gh.factory<_i199.LoginCubit>(() => _i199.LoginCubit());
     gh.singleton<_i563.SettingsService>(() => _i563.SettingsService());
+    gh.singleton<_i323.ChargerDiscoveryRemotedatasource>(
+      () => _i323.ChargerDiscoveryRemotedatasourceImpl(),
+    );
     gh.singleton<_i719.Settings>(
       () => _i719.SettingsController(gh<_i563.SettingsService>()),
     );
@@ -76,6 +81,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i302.ChargerDiscoveryRepository>(
       () => _i412.ChargerDiscoveryRepositoryImpl(
+        gh<_i323.ChargerDiscoveryRemotedatasource>(),
         networkInfo: gh<_i367.NetworkInfo>(),
       ),
     );

@@ -1,14 +1,14 @@
 import 'package:evoltsoft/src/features/chargerdetails/domain/entities/connector_entity.dart';
 
 class ChargingStationEntity {
-  final String id;
+  final int id;
   final String name;
   final String address;
   final double latitude;
   final double longitude;
   final List<ConnectorEntity> connectors; // Multiple plug types
   final String openHours;
-  final String imageUrl;
+  final String? imageUrl;
 
   ChargingStationEntity({
     required this.id,

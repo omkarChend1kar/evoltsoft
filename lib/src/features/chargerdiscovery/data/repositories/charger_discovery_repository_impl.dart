@@ -6,6 +6,7 @@ import 'package:evoltsoft/src/core/utills/error/failures.dart';
 import 'package:evoltsoft/src/core/utills/network/network_info.dart';
 import 'package:evoltsoft/src/features/chargerdetails/domain/entities/charging_station_entity.dart';
 import 'package:evoltsoft/src/features/chargerdetails/domain/entities/connector_entity.dart';
+import 'package:evoltsoft/src/features/chargerdiscovery/data/datasources/remote/charger_discovery_remotedatasource.dart';
 import 'package:evoltsoft/src/features/chargerdiscovery/domain/repositories/charger_discovery_repository.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -14,7 +15,11 @@ import 'package:injectable/injectable.dart';
 class ChargerDiscoveryRepositoryImpl extends ChargerDiscoveryRepository {
   final NetworkInfo networkInfo;
 
-  ChargerDiscoveryRepositoryImpl({required this.networkInfo});
+  final ChargerDiscoveryRemotedatasource remotedatasource;
+  ChargerDiscoveryRepositoryImpl(
+    this.remotedatasource, {
+    required this.networkInfo,
+  });
   @override
   Future<Either<Failure, List<ChargingStationEntity>>> filterChargers({
     required Map<String, dynamic> filters,
@@ -37,7 +42,10 @@ class ChargerDiscoveryRepositoryImpl extends ChargerDiscoveryRepository {
         return const Left(NetworkFailure(message: 'No internet Connection'));
       }
       return Right(
-        await _generateChargingStations(LatLng(latitude, longitude)),
+        await remotedatasource.getNearbyChargers(
+          latitude: latitude,
+          longitude: longitude,
+        ),
       );
     } on ServerException catch (error) {
       return Left(
@@ -73,47 +81,3 @@ LatLng _generateRandomNearbyLocation(LatLng center, double radiusInMeters) {
   );
 }
 
-Future<List<ChargingStationEntity>> _generateChargingStations(
-  LatLng userLocation,
-) async {
-  List<ChargingStationEntity> stations = [];
-  List<String> connectorTypes = [
-    "CCS",
-    "CHAdeMO",
-    "Type2",
-    "Tesla Supercharger",
-  ];
-
-  for (int i = 0; i < 5; i++) {
-    LatLng stationLocation = _generateRandomNearbyLocation(userLocation, 2000);
-    List<ConnectorEntity> connectors = List.generate(
-      Random().nextInt(3) + 1, // Generate 1 to 3 connector types per station
-      (index) {
-        String type = connectorTypes[Random().nextInt(connectorTypes.length)];
-        int totalPlugs = Random().nextInt(5) + 1;
-        int availablePlugs = Random().nextInt(totalPlugs + 1);
-        return ConnectorEntity(
-          type: type,
-          powerCapacity:
-              Random().nextDouble() * (350 - 50) + 50, // 50kW to 350kW
-          totalPlugs: totalPlugs,
-          availablePlugs: availablePlugs,
-        );
-      },
-    );
-
-    stations.add(
-      ChargingStationEntity(
-        id: 'station_$i',
-        name: 'Charging Station ${i + 1}',
-        address: 'Some address $i',
-        latitude: stationLocation.latitude,
-        longitude: stationLocation.longitude,
-        connectors: connectors,
-        openHours: '24/7',
-        imageUrl: 'some_url',
-      ),
-    );
-  }
-  return stations;
-}

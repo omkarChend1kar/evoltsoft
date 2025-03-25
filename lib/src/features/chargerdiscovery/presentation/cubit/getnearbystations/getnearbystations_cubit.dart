@@ -101,7 +101,7 @@ class GetNearByStationsCubit extends Cubit<GetNearByStationsState> {
   ) {
     return stations.map((station) {
       return Marker(
-        markerId: MarkerId(station.id),
+        markerId: MarkerId(station.id.toString()),
         position: LatLng(station.latitude, station.longitude),
         infoWindow: InfoWindow(title: station.name, snippet: station.address),
         icon: chargingStationIcon,
