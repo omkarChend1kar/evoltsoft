@@ -1,17 +1,47 @@
-# evoltsoft
+# Evoltsoft Assignment
 
-A new Flutter project.
+## 📹 Demo Video
+[Click here to watch the demo](https://github.com/user-attachments/assets/1920aba1-2eb2-4064-86e5-68a0fdd5b918)
 
-## Getting Started
+## 🚀 Getting Started
 
-This project is a starting point for a Flutter application.
+Follow the steps below to set up and run both the **mobile** and **backend** applications.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Mobile Application (Flutter)
+### Prerequisites
+- **Flutter** installed ([Installation Guide](https://flutter.dev/docs/get-started/install))
+- **Dart** installed
+- Android/iOS emulator or a physical device
+- Required dependencies installed (`flutter pub get` will handle this)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# evoltsoft
+### Steps to Run
+1. Open the terminal and navigate to the **Flutter project directory**.
+2. Run the following commands:
+   ```sh
+   flutter clean
+   flutter pub get
+   flutter run
+   ```
+
+## Backend Application (NodeJs)
+### Prerequisites
+- **Node.js** installed ([Download Here](https://nodejs.org/))
+- **npm** installed (comes with Node.js)
+- **MongoDB** installed (if applicable)
+
+### Steps to Run
+1. Navigate to the **backend directory** (inside the Flutter project directory):
+   ```sh
+   cd backend-server
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the backend server (ensure it runs on **port 3000**):
+   ```sh
+   npm start
+
+
