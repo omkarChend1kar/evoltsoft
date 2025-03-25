@@ -29,7 +29,6 @@ Follow the steps below to set up and run both the **mobile** and **backend** app
 ### Prerequisites
 - **Node.js** installed ([Download Here](https://nodejs.org/))
 - **npm** installed (comes with Node.js)
-- **MongoDB** installed (if applicable)
 
 ### Steps to Run
 1. Navigate to the **backend directory** (inside the Flutter project directory):
